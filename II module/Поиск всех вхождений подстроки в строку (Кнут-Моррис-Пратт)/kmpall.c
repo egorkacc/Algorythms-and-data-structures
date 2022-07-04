@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
+
 #define MAX_LEN 1000
 
 #define DEBUG
