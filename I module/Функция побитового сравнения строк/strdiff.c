@@ -3,7 +3,7 @@
 #include <string.h>
 
 int strdiff(char *a, char *b);
-
+/*
 int main(int argc, char **argv)
 {
 	char str1[64], str2[64];
@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     
 	return 0;
 }
-
+*/
 int strdiff(char *a, char *b)
 {
     int res = 0;
