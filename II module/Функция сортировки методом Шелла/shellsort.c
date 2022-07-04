@@ -14,7 +14,7 @@ void swap(unsigned long i, unsigned long j);
 void shellsort(unsigned long,
     int (*)(unsigned long, unsigned long),
     void (*)(unsigned long, unsigned long));
-
+/*
 int main(int argc, char **argv)
 {
     int n;
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     
     return 0;
 }
-
+*/
 unsigned long make_fib_array(unsigned long nel)
 {
     unsigned long i;
