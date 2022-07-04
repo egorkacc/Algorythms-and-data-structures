@@ -18,9 +18,8 @@ int maxarray(void *base, size_t nel, size_t width,
     return local_max;
 }
 
-/*
 int compare(void *a, void *b);
-
+/*
 int main(int argc, char **argv)
 {
 	int n = 10;
@@ -36,9 +35,8 @@ int main(int argc, char **argv)
 	
 	return 0;
 }
-
+*/
 int compare(void *a, void *b)
 {
 	return (*(int *)a - *(int *)b);
 }
-*/
