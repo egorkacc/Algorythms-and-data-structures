@@ -10,7 +10,7 @@
     char *strings = place + col_size; \
     for(i = 0; i < (M); i++){ \
         arr[i] = (type *)(strings + i*str_size); \
-    }\
+    } \
   }
   
 #define MATRIX_FREE(arr) free((char *)arr); 
