@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 void quicksort(int low, int high, int m, int *pointer);
 void selectsort(int low, int high, int *arr);
 void swap(long p, long q, int *arr);
