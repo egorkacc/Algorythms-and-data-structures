@@ -53,7 +53,7 @@ boolean queue_empty(cb_queue *q)
 q_type dequeue(cb_queue *q)
 {
     if(queue_empty(q))
-	{
+    {
         delete_queue(q);
         
         printf("!ERROR!\n");
@@ -89,19 +89,19 @@ void delete_queue(cb_queue *q)
 void enqueue(cb_queue *q, q_type x)
 {
     if(q->count == q->cap)
-	{
+    {
         int old_cap = q->cap;
         
         q->cap *= 2;
         q->data = (q_type *)realloc(q->data, sizeof(q_type)*q->cap);
         
         if(q->head)
-		{ 
+	{ 
             memcpy(q->data+q->head+old_cap, q->data+q->head, (old_cap-q->head)*sizeof(q_type));
             
             q->head += old_cap;
         }
-		else
+	else
             q->tail += old_cap;
     }
     
@@ -123,23 +123,23 @@ void commands(cb_queue *q)
     
     int arg, i;
     for(i = 0; i < m; i++)
-	{
+    {
         scanf("%s", command);
         
         COMMAND(ENQ)
-		{
+	{
             scanf("%i", &arg);
             
             enqueue(q, arg);
         }
         
         COMMAND(DEQ)
-		{
+	{
             printf("%i\n", dequeue(q));
         }
         
         COMMAND(EMPTY)
-		{
+	{
             printf(queue_empty(q) ? "true\n" : "false\n");
         }
     }
