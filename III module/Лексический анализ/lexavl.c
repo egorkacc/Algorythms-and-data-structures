@@ -17,7 +17,7 @@ typedef struct Node
     int key;
     int balance;
  
-	char *value;
+    char *value;
        
     struct Node *parent;
     struct Node *left;
@@ -26,7 +26,7 @@ typedef struct Node
 
 typedef struct Tree
 {
-	int last_index;
+    int last_index;
 	
     node Head;
     
@@ -93,7 +93,7 @@ node init_node()
 node insert(tree T, node New_elem)
 {
     if(!(T->Head))
-	{
+    {
         T->Head = New_elem;
         New_elem->key = 0;
         T->last_index = 1;
@@ -105,19 +105,19 @@ node insert(tree T, node New_elem)
     
     int assistor;
     while(LOOP)
-	{
+    {
         assistor = T->compare(Temp->value, New_elem->value);
         if(!assistor)
-		{
+	{
             free(New_elem);
             
             return Temp;
         }
         
         if(assistor == -1)
-		{
+	{
             if(!Temp->left)
-			{
+	    {
                 Temp->left = New_elem;
                 
                 New_elem->parent = Temp;
@@ -127,13 +127,13 @@ node insert(tree T, node New_elem)
                 
                 return New_elem;
             }
-			else
+	    else
                 Temp = Temp->left;
         }
-		else 
-		{
+	else 
+	{
             if(!Temp->right)
-			{
+	    {
                 Temp->right = New_elem;
                 
                 New_elem->parent = Temp;
@@ -143,7 +143,7 @@ node insert(tree T, node New_elem)
                 
                 return New_elem;
             } 
-			else
+	    else
                 Temp = Temp->right;
         }
     }
@@ -158,21 +158,21 @@ node insert_avl(tree T, node elem)
     
     a->balance = 0;
     while(LOOP)
-	{
+    {
         x = a->parent;
         
         if(!x)
             return a;
             
         if(a == (x->left))
-		{ 
+	{ 
             --(x->balance);
             
             if(!(x->balance))
                 break;
 
             if(x->balance == -2)
-			{
+	    {
                 if(a->balance == 1)
                     tau_l(T, a);
                     
@@ -182,14 +182,14 @@ node insert_avl(tree T, node elem)
             } 
         } 
         else
-		{
+	{
             ++(x->balance);
             
             if(!(x->balance))
                 break;
                 
             if(x->balance == 2)
-			{
+	    {
                 if(a->balance == -1)
                     tau_r(T, a);
                     
@@ -206,7 +206,7 @@ node insert_avl(tree T, node elem)
 int spec_symbol(int c)
 {
     switch(c)
-	{
+    {
 	    case '+' : return 0;
 	    case '-' : return 1;
 	    case '*' : return 2;
@@ -220,7 +220,7 @@ int spec_symbol(int c)
 
 void const_finder(int ch, int nel)
 {
-	char const_digit[nel];
+    char const_digit[nel];
 	
     int j = 0, CH = ch;
     while(isdigit(ch) && (CH != EOF))
@@ -246,7 +246,7 @@ void const_finder(int ch, int nel)
 void delete_nodes_after(node Head)
 {
     if(Head)
-	{
+    {
         delete_nodes_after(Head->left);
         delete_nodes_after(Head->right);
         
@@ -272,7 +272,7 @@ void tau_l(tree T, node leaf)
     node parent = x->parent;
 
     if(!y) 
-	{
+    {
         printf("ROTATE_LEFT: !ERROR! right child is trivial.\n");
         
         return;
@@ -315,7 +315,7 @@ void tau_r(tree T, node leaf)
     node parent = x->parent;
 
     if(!y) 
-	{
+    {
         printf("ROTATE_LEFT: !ERROR! left child is trivial.\n");
         
         return;
@@ -354,7 +354,7 @@ void tau_r(tree T, node leaf)
 void replace_node_destructive(tree T, node x, node y)
 {
     if(x == T->Head)
-	{
+    {
         delete_nodes_after(T->Head);
         
         T->Head = y;
@@ -365,9 +365,9 @@ void replace_node_destructive(tree T, node x, node y)
     node p = x->parent;
     
     if(y)
-	{
+    {
         if(y->parent)
-		{
+	{
             if(y == y->parent->left)
                 y->parent->left = NULL;
             else if(y == y->parent->right)
@@ -387,95 +387,73 @@ void replace_node_destructive(tree T, node x, node y)
 
 void get_ident(char *buffer, int bufsize, int *global_counter)
 {
-	char *buffer1 = buffer;
+    char *buffer1 = buffer;
     int len, c;
-	int C = c;
+    int C = c;
     	
     for(len = 0; (len < (bufsize - 1)) && (isdigit(c) || isalpha(C = getchar())); len++)
-	{	
-		c = getchar();
-//		printf("%i %i\n", C, c);
-		
-		buffer1[len] = (char)C;
+    {	
+	c = getchar();
+	    
+	buffer1[len] = (char)C;
         buffer[len] = (char)c;
         
         if(buffer1[len] == ' ' && buffer[len] == ' ')
         	break;
-        
-//      	printf("|%c %c|\n", buffer1[len], buffer[len]);
-	   
+	    
         ++(*global_counter);
     }
 	
-//	printf("%i\n", len);
-//	printf("%c %c\n", C, c);
-	
-	if(len)
-		SPEC_S = spec_symbol(C);
+    if(len)
+	SPEC_S = spec_symbol(C);
 		
 		
-	buffer1[len] = '\0'; 
+    buffer1[len] = '\0'; 
     buffer[len] = '\0';
 		
-	if(!len && SPEC_S != 777 && isdigit(C) && (SPEC_S != -1))
-		printf("SPEC %i\n", SPEC_S);
+    if(!len && SPEC_S != 777 && isdigit(C) && (SPEC_S != -1))
+	printf("SPEC %i\n", SPEC_S);
     
-//    printf("=============================\n");
 }
 
-
-/*
-28
-alpha + x1 (beta alpha) x1 y
-IDENT 0
-SPEC 0
-IDENT 1
-SPEC 4
-IDENT 2
-IDENT 0
-!! SPEC 5 !!
-IDENT 1
-IDENT 3
-*/
 void inspector(tree Idents)
 {
-	node New_ident = NULL;
+    node New_ident = NULL;
 	
     int n;
     scanf("%i", &n);
 
     int c, i = -2;
     int current_ident_id = 0;
-	while((c = getchar()) != EOF)
-	{	
-//		printf("<%c>\n", c);
-		
-        if(isspace(c))
-            continue;  
-        
-        if(isdigit(c))
-		{
-			printf("CONST ");
-			
-        	const_finder(c, n);
-          
-		    continue;
-        }
-        
-        if(!isalpha(c))
-        	printf("SPEC %i\n", spec_symbol(c));
-        else
-		{
-			New_ident = init_node();
-            New_ident->value[0] = c;
-		
-            get_ident(New_ident->value + 1, LENGTH - 1, &i);
-            
-            New_ident = insert_avl(Idents, New_ident);
-            
-            printf("IDENT %i\n", New_ident->key);
-            
-            continue;
-        }
+    while((c = getchar()) != EOF)
+    {	
+
+	if(isspace(c))
+	    continue;  
+
+	if(isdigit(c)) 
+        {
+		printf("CONST ");
+
+		const_finder(c, n);
+
+		continue;
+	}
+
+	if(!isalpha(c))
+		printf("SPEC %i\n", spec_symbol(c));
+	else
+	{
+	    New_ident = init_node();
+	    New_ident->value[0] = c;
+
+	    get_ident(New_ident->value + 1, LENGTH - 1, &i);
+
+	    New_ident = insert_avl(Idents, New_ident);
+
+	    printf("IDENT %i\n", New_ident->key);
+
+	    continue;
+	}
     }
 }
