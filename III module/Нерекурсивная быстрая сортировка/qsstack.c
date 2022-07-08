@@ -66,11 +66,11 @@ void quicksort(int *arr, int n)
     
     push(&s, 0, n - 1);
     
-    while (!(stackempty(&s)))  
-	{
+    while (!(stackempty(&s)))
+    {
         t temp = pop(&s);
         while(temp.high > temp.low)
-		{
+	{
             mid = (temp.low + temp.high)/2;
             left = temp.low;
             right = temp.high;
@@ -78,15 +78,15 @@ void quicksort(int *arr, int n)
             assist = arr[mid];
             
             while(left < right)
-			{
+	    {
                 while(assist > arr[left]) 
                     ++left;
                     
                 while(assist < arr[right])
                     --right;
                     
-                if(right > (left - 1)) 
-				{
+                if(right > (left - 1))
+		{
                     swap(&arr[right], &arr[left]);
                     
                     ++left;
@@ -95,14 +95,14 @@ void quicksort(int *arr, int n)
             }
 			 
             if(left <= (mid - 1)) 
-			{
+	    {
                 if(left < temp.high)
                     push(&s, left, temp.high);
                     
                 temp.high = right;
             }
-            else 
-			{
+            else
+	    {
                 if(right > temp.low)
                     push(&s, temp.low, right);
                     
@@ -140,5 +140,5 @@ int stackempty(st *s)
     if(!s->top)  
         return 1;
     else 
-		return 0;       
+	return 0;       
 }
