@@ -141,6 +141,6 @@ void commands(cb_queue *q)
         COMMAND(EMPTY)
 	{
             printf(queue_empty(q) ? "true\n" : "false\n");
-        }
+        } 
     }
 }
