@@ -92,7 +92,7 @@ void quicksort(int *arr, int n)
                     ++left;
                     --right;
                 }
-            }
+            } 
 			 
             if(left <= (mid - 1)) 
 	    {
